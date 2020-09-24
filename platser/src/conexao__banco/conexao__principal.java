@@ -6,34 +6,33 @@ import java.sql.SQLException;
 
 public class conexao__principal {
 	
-	private Connection cx = null;
-			
 	public static void main(String[] args) {
 		new conexao__principal().processar();
 	}
-	
-	public void processar() {
+
+	private void processar () {
 		try {
-			cx = new conexao__principal().connectionDB();
-			if ( cx != null) {
+			Connection con = new conexao__principal().conectarBanco();
+			if (con != null) {
 				System.out.println("Conectado com sucesso.");
-				cx.close();
+				con.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public Connection connectionDB() {
+	public Connection conectarBanco() {
 		try {
 			Class.forName("org.postgresql.Driver");
-			String url = "jdbc:postgresql://localhost:5432/faculdade";
-			cx = DriverManager.getConnection(url, "postgres", "#euclidesRSTUDIES");	
+			String url = "jdbc:postgresql://localhost:5432/faculdade"; // 2
+			Connection con = DriverManager.getConnection(url, "postgres", "#euclidesRSTUDIES");
+			return con;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-		} catch (SQLException e ) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+ 
 }
