@@ -26,8 +26,8 @@ public class conexao__principal {
 	
 	public Connection connectionDB() {
 		try {
-			Class.forName("org.postesql.Driver");
-			String url = "jdbc:postgresql://localhost:5432/PlatSer";
+			Class.forName("org.postgresql.Driver");
+			String url = "jdbc:postgresql://localhost:5432/faculdade";
 			cx = DriverManager.getConnection(url, "postgres", "#euclidesRSTUDIES");	
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
